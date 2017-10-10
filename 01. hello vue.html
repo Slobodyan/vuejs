@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>vue.js</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-on:input="setMessage">
+            <p>
+                <a v-bind:href="link">{{message}} {{counter>0?counter:""}}</a>
+                <br> or <br>
+                <a :href="link" target="_blank">{{message}} {{counter>0?counter:""}}</a>
+                <br>
+                <div v-html="innerHtml"></div>
+            </p>
+            <p v-once>{{message}}</p>
+        </div>
+        <script src="https://unpkg.com/vue"></script>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    message: 'Hello Vue!',
+                    counter: 0,
+                    link: 'https://google.com',
+                    innerHtml: '<b>Inner Html</b>'
+                },
+                methods: {
+                    setMessage: function(event){
+                        this.message = event.target.value;
+                        this.counter++;
+                     }
+                }
+            })
+        </script>
+    </body>
+</html>

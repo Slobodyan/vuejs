@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>vue.js</title>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <div id="app">
+        <p>
+            <button v-on:click="counter++">+</button>
+            <button v-on:click="if(counter>0) counter--;">-</button>
+            <div>{{counter}}</div>
+        </p>
+        <p>
+            <button @click="counter++">+</button>
+            <button @click="if(counter>0) counter--;">-</button>
+            <div>{{counter}}</div>
+        </p>
+        <p>
+            <button v-on:click="increase">+</button>
+            <button v-on:click="decrease">-</button>
+            <div>{{counter}}</div>
+        </p>
+        <p>
+            <input type="text" v-model="counter" />
+            <br>
+            <input type="text" v-model="counter" />
+        </p>
+        <p>
+            <input type="text" v-model="counter" />
+            <br>
+            <input type="text" v-model="factorial(counter)" />
+        </p>
+        <p>
+                <input type="text" v-model="counter" />
+                <br>
+                <p>{{checkAge()}}</p>
+                <p>{{enabled}}</p>
+            </p>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: { counter: 0 },
+            methods: {
+                increase: function () {
+                    this.counter++;
+                },
+                decrease: function () {
+                    if (this.counter > 0)
+                        this.counter--;
+                },
+                factorial: function (number) {
+                    var result = 1;
+                    for (var i = 1; i <= number; i++)
+                        result *= i;
+
+                    return result;
+                },
+                checkAge: function(){
+                    if(this.counter>18)
+                    return "Has access";
+
+                    return "Has not access"
+                }
+            },
+            computed:{
+                enabled: function(){
+                    if(this.counter>18)
+                    return "Has access";
+
+                    return "Has not access"
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
