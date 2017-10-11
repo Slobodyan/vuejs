@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>vue.js</title>
+<meta charset="utf-8" />
+<style>
+.region{
+    background-color: #999;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    margin: 10px;
+}
+.bounded{
+    border: 2px solid green;
+}
+.active-red{
+    background-color:red;
+}
+.blue{ 
+    background-color: blue; 
+}
+.green{ 
+    background-color: green; 
+}
+.big{
+    width: 150px;
+    height: 150px;
+}
+.small{
+    width:50px;
+    height: 50px;
+}
+</style>
+</head>
+<body>
+<div id="app">
+    <div class="region" v-bind:class="{'active-red': isActive, bounded: isBounded}"></div>
+    <div class="region" v-bind:class="classObj"></div>
+    <div class="region" v-bind:class="[color, size, {bounded: isBounded}]"></div>
+    <div class="region" v-bind:class="[color, size, {bounded: isBounded}]"></div>
+    <br>
+    <input type="text" v-model="color"/>
+    <br>
+    <input type="text" v-model="size"/>
+    <br>
+    <button v-on:click="isActive=!isActive">Toggle color</button>
+    <button v-on:click="isBounded=!isBounded">Toggle border</button>
+</div>
+<script src="https://unpkg.com/vue"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            isActive : false, 
+            isBounded: false,
+            color:"",
+            size:""
+        },
+        computed:{
+            classObj: function(){
+                return {
+                    'active-red':this.isActive,
+                    bounded: this.isBounded
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>
